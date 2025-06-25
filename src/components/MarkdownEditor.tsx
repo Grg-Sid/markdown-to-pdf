@@ -1,14 +1,16 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Editor from "./Editor";
 import Preview from "./Preview";
+import floorBinarySearch from "../utils/floorBinarySearch";
 
 const MarkdownEditor: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
+  const [privewLines, setPreviewLines] = useState<number[]>([]);
   const editorRef = useRef<HTMLTextAreaElement>(null!);
 
   const scrollToPreviewLine = (line: number) => {
-    console.log(`Scrolling to preview line: ${line}`);
-    const element = document.getElementById(`preview-line-${line}`);
+    const approxLine = floorBinarySearch(privewLines, line);
+    const element = document.getElementById(`preview-line-${approxLine}`);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "center" });
     }
@@ -20,10 +22,28 @@ const MarkdownEditor: React.FC = () => {
     if (!editor) return;
 
     const lines = editor.value.split("\n");
-    const position = lines.slice(0, line).join("\n").length + line; // Calculate position based on line number
+    const position = lines.slice(0, line).join("\n").length + line;
+
     editor.setSelectionRange(position, position);
-    editor.scrollTop = (position / editor.value.length) * editor.scrollHeight;
+
+    const targetScrollTop =
+      (position / editor.value.length) * editor.scrollHeight;
+
+    editor.scrollTo({
+      top: targetScrollTop,
+      behavior: "smooth",
+    });
   };
+
+  useEffect(() => {
+    const allPreviewLines = Array.from(
+      document.querySelectorAll("[id^='preview-line-']")
+    )
+      .map((el) => parseInt(el.id.replace("preview-line-", ""), 10))
+      .filter((line) => !isNaN(line));
+    setPreviewLines(allPreviewLines);
+    console.log(`All preview lines: ${allPreviewLines}`);
+  }, [markdown]);
 
   return (
     <div className="flex h-screen">
@@ -31,13 +51,14 @@ const MarkdownEditor: React.FC = () => {
         <Editor
           onMarkdownChange={setMarkdown}
           onDoubleClickLine={(line) => scrollToPreviewLine(line)}
-          textareaRef={editorRef} // ✅ pass the ref
+          textareaRef={editorRef}
         />
       </div>
       <div id="priview" className="w-1/2 overflow-auto">
         <Preview
           markdown={markdown}
           onDoubleClickLine={(line) => scrollToEditorLine(line)}
+          setPreviewLines={setPreviewLines}
         />
       </div>
     </div>

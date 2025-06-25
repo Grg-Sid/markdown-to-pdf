@@ -3,13 +3,13 @@ import React, { useState } from "react";
 interface EditorProps {
   onMarkdownChange: (markdown: string) => void;
   onDoubleClickLine?: (line: number) => void;
-  textareaRef?: React.RefObject<HTMLTextAreaElement>; // ✅ Add this
+  textareaRef?: React.RefObject<HTMLTextAreaElement>;
 }
 
 const Editor: React.FC<EditorProps> = ({
   onMarkdownChange,
   onDoubleClickLine,
-  textareaRef, // ✅ use this ref from parent
+  textareaRef,
 }) => {
   const [markdown, setMarkdown] = useState<string>("");
 
@@ -31,7 +31,7 @@ const Editor: React.FC<EditorProps> = ({
 
   return (
     <textarea
-      ref={textareaRef} // ✅ attach here
+      ref={textareaRef} 
       value={markdown}
       onChange={handleChange}
       onDoubleClick={handleDoubleClick}
