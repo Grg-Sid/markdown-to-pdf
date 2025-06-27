@@ -3,7 +3,11 @@ import Editor from "./Editor";
 import Preview from "./Preview";
 import floorBinarySearch from "../utils/floorBinarySearch";
 
-const MarkdownEditor: React.FC = () => {
+interface MarkdownEditorProps {
+  previewRef?: React.RefObject<HTMLDivElement | null>;
+}
+
+const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ previewRef }) => {
   const [markdown, setMarkdown] = useState<string>("");
   const [privewLines, setPreviewLines] = useState<number[]>([]);
   const editorRef = useRef<HTMLTextAreaElement>(null!);
@@ -42,7 +46,6 @@ const MarkdownEditor: React.FC = () => {
       .map((el) => parseInt(el.id.replace("preview-line-", ""), 10))
       .filter((line) => !isNaN(line));
     setPreviewLines(allPreviewLines);
-    console.log(`All preview lines: ${allPreviewLines}`);
   }, [markdown]);
 
   return (
@@ -54,8 +57,9 @@ const MarkdownEditor: React.FC = () => {
           textareaRef={editorRef}
         />
       </div>
-      <div id="priview" className="w-1/2 overflow-auto">
+      <div id="preview" className="w-1/2 overflow-auto p-4 border rounded ">
         <Preview
+          priviewRef={previewRef}
           markdown={markdown}
           onDoubleClickLine={(line) => scrollToEditorLine(line)}
           setPreviewLines={setPreviewLines}

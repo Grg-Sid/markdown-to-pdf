@@ -1,2 +1,54 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@media print {
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #print-section,
+  #print-section * {
+    visibility: visible;
+  }
+
+  #print-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* Force full-page width and height */
+    width: 100vw !important;
+    height: 100vh !important;
+
+    box-sizing: border-box;
+    padding: 2rem;
+
+    background: white;
+  }
+
+  /* Prevent page breaks inside code blocks and others */
+  #print-section pre,
+  #print-section pre > code,
+  #print-section h1,
+  #print-section h2,
+  #print-section table,
+  #print-section ul,
+  #print-section ol,
+  #print-section li,
+  #print-section blockquote {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}

@@ -31,7 +31,7 @@ const Editor: React.FC<EditorProps> = ({
 
   return (
     <textarea
-      ref={textareaRef} 
+      ref={textareaRef}
       value={markdown}
       onChange={handleChange}
       onDoubleClick={handleDoubleClick}
