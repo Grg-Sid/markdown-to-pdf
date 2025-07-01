@@ -36,7 +36,7 @@ const Editor: React.FC<EditorProps> = ({
       onChange={handleChange}
       onDoubleClick={handleDoubleClick}
       placeholder="Type your markdown here..."
-      className="w-full h-full p-4 border rounded"
+      className="w-full h-full p-4 border-l border-r border-b"
     />
   );
 };

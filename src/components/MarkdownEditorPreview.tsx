@@ -3,11 +3,13 @@ import Editor from "./Editor";
 import Preview from "./Preview";
 import floorBinarySearch from "../utils/floorBinarySearch";
 
-interface MarkdownEditorProps {
+interface MarkdownEditorPreviewProps {
   previewRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ previewRef }) => {
+const MarkdownEditorPreview: React.FC<MarkdownEditorPreviewProps> = ({
+  previewRef,
+}) => {
   const [markdown, setMarkdown] = useState<string>("");
   const [privewLines, setPreviewLines] = useState<number[]>([]);
   const editorRef = useRef<HTMLTextAreaElement>(null!);
@@ -49,7 +51,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ previewRef }) => {
   }, [markdown]);
 
   return (
-    <div className="flex h-screen">
+    <div id="editor-preview-container" className="flex h-162">
       <div id="editor" className="w-1/2 overflow-auto">
         <Editor
           onMarkdownChange={setMarkdown}
@@ -57,7 +59,10 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ previewRef }) => {
           textareaRef={editorRef}
         />
       </div>
-      <div id="preview" className="w-1/2 overflow-auto p-4 border rounded ">
+      <div
+        id="preview"
+        className="w-1/2 overflow-auto p-4 border-l border-r border-b"
+      >
         <Preview
           priviewRef={previewRef}
           markdown={markdown}
@@ -69,4 +74,4 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ previewRef }) => {
   );
 };
 
-export default MarkdownEditor;
+export default MarkdownEditorPreview;

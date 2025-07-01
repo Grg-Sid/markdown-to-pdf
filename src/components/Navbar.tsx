@@ -7,11 +7,11 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ printContentRef }) => {
   return (
-    <nav className="bg-gray">
+    <nav className="bg-gray border">
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           <a href="/" className="text-black text-lg font-bold">
-            Markdown to PDF
+            Markdown-To-PDF
           </a>
           <PrintComponent contentRef={printContentRef} />
         </div>

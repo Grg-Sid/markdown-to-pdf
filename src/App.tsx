@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import MarkdownEditor from "./components/MarkdownEditor";
+import MarkdownEditor from "./components/MarkdownEditorPreview";
 import Navbar from "./components/Navbar";
 
 const App: React.FC = () => {
