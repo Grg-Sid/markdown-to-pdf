@@ -1,54 +1,61 @@
-# React + TypeScript + Vite
+# Markdown to PDF
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and intuitive web-based editor to write Markdown and print it to PDF. This tool provides a live preview of your Markdown document as you type and allows you to easily save your work as a PDF file.
 
-Currently, two official plugins are available:
+## Features ✨
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Live Preview:** See your rendered Markdown in real-time.
+- **Print to PDF:** Easily print your Markdown document to a PDF file.
+- **Markdown Support:** Supports standard Markdown, as well as extensions like GFM (GitHub Flavored Markdown), mathematical expressions (KaTeX), and code syntax highlighting.
+- **Synchronized Scrolling:** Double-click on a line in the editor to scroll to the corresponding line in the preview, and vice-versa.
 
-## Expanding the ESLint configuration
+## Screenshot 📸
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+\*\*
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## Web Link 🌐
+
+You can find a live version of this project here: [https://md-to-pdf.grg-sid.fyi/](https://md-to-pdf.grg-sid.fyi/)
+
+---
+
+## Getting Started 🚀
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+You need to have [Node.js](https://nodejs.org/) and [yarn](https://yarnpkg.com/) installed on your machine.
+
+### Installation
+
+1.  Clone the repo:
+    ```sh
+    git clone https://github.com/your-username/markdown-to-pdf.git
+    ```
+2.  Install NPM packages:
+    ```sh
+    yarn install
+    ```
+
+### Running the Application
+
+To run the application in development mode, use the following command:
+
+```sh
+yarn dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will start the development server, and you can view the application in your browser at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Building the Application
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+To create a production build of the application, use the following command:
+
+```sh
+yarn build
 ```
+
+This will create a `dist` folder with the optimized and minified files for deployment.
