@@ -11,7 +11,8 @@ A simple and intuitive web-based editor to write Markdown and print it to PDF. T
 
 ## Screenshot 📸
 
-\*\*
+<img width="1913" height="970" alt="image" src="https://github.com/user-attachments/assets/0750dd46-d5bd-45e2-9fb3-1a210e29b665" />
+
 
 ---
 
